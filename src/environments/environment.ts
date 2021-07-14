@@ -3,7 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  base_url: 'https://integra1.solutions.webfg.ch/restweb',
+  api_credentials: {
+    clientId: 'webfg-test',
+    clientPassword: 'WW58YJj89ltR43Cr',
+    username: 'test001',
+    password: 'ryby3NTyKduAMcvZ',
+  },
 };
 
 /*

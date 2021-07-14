@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "data-table-app"
+    }
+  },
+  "defaultProject": "data-table-app",
+  "cli": {
+    "analytics": false
+  }
 }

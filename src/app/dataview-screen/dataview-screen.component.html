@@ -1,0 +1,98 @@
+<app-navbar></app-navbar>
+
+<div *ngIf="cargando" class="row">
+  <div class="col-12 text-center">
+    <div class="alert alert-info">
+      <h4 class="alert-heading">Cargando...</h4>
+      <div class="spinner-border text-secondary" role="status">
+        <span class="sr-only"></span>
+      </div>
+      <p>Esperen por favor</p>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!cargando" class="container mt-5">
+  <div class="card">
+    <div class="card-header text-center"><h3>Market Data</h3></div>
+
+    <div
+      *ngFor="let field of fields"
+      class="container border-bottom pb-3 text-secondary"
+    >
+      <div class="border-bottom border-2 text-dark"><h5>Key data</h5></div>
+      <div class="row">
+        <div class="col">Last</div>
+        <div class="col text-end">{{ field.LVAL_NORM.v }}</div>
+        <div class="col text-end">
+          {{ field.LVAL_NORM.d | date: "h:mm:ss" }} H
+        </div>
+      </div>
+      <div class="row border-bottom">
+        <div class="col">Close</div>
+        <div class="col text-end">
+          {{ field.CLOSE_ADJ_NORM.v }}
+        </div>
+        <div class="col text-end">
+          {{ field.CLOSE_ADJ_NORM.d | date: "dd/MM/yyyy" }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">Day Change %</div>
+        <div
+          [class]="
+            field.YTD_PR_NORM.v < 0
+              ? 'col text-end text-danger'
+              : 'col text-end text-success'
+          "
+        >
+          {{ field.NC2_PR_NORM.v | number }} %
+        </div>
+        <div class="col"></div>
+      </div>
+      <div class="row border-bottom">
+        <div class="col">Day Change</div>
+        <div
+          [class]="
+            field.YTD_PR_NORM.v < 0
+              ? 'col text-end text-danger'
+              : 'col text-end text-success'
+          "
+        >
+          {{ field.NC2_NORM.v }}
+        </div>
+        <div class="col"></div>
+      </div>
+      <div class="row">
+        <div class="col">Volume</div>
+        <div class="col text-end">{{ field.VOL.v | millones: "3" }}</div>
+        <div class="col"></div>
+      </div>
+      <div class="row border-bottom">
+        <div class="col">Turmover</div>
+        <div class="col text-end">{{ field.TUR.v | millones: "3" }}</div>
+        <div class="col"></div>
+      </div>
+      <div class="row">
+        <div class="col">Previus year close</div>
+        <div class="col text-end">{{ field.PY_CLOSE.v }}</div>
+        <div class="col text-end">
+          {{ field.PY_CLOSE.d | date: "dd/MM/yyyy" }}
+        </div>
+      </div>
+      <div class="row border-bottom">
+        <div class="col">YTD %</div>
+        <div
+          [class]="
+            field.YTD_PR_NORM.v < 0
+              ? 'col text-end text-danger'
+              : 'col text-end text-success'
+          "
+        >
+          {{ field.YTD_PR_NORM.v | number }} %
+        </div>
+        <div class="col"></div>
+      </div>
+    </div>
+  </div>
+</div>
